@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-         <h1>这里是首页</h1>
+         <h1>这里是首页 <a href="{% url 'polls:index' %}">这是投票页</a></h1>
         <div class="center">
            <div>
                <img src="/static/img/公众号.JPG" alt="">
@@ -16,10 +16,14 @@
             <h2>这里显示所有书籍</h2>
             <ul>
                 {% for book in books %}
-                   <a href="/booktest/detail/{{book.id}}"> <li>{{book.id}}--{{book.title}}--{{book.price}}--{{book.pub_date}}</li> </a>
-    
+                   <li>
+                       {# <a href="/detail/{{book.id}}"> <li>{{book.id}}--{{book.title}}--{{book.price}}--{{book.pub_date}}</li> </a>#}
+                       <a href="{% url 'booktest:detail' book.id %}"> {{book.id}}--{{book.title}}--{{book.price}}--{{book.pub_date}} </a>
+                       <a href="{% url 'booktest:deletebook' book.id %}"> 删除 </a>
+                   </li>
                 {% endfor %}
             </ul>
+            <h2>{#<a href="{% url 'booktest:addbook'>添加书籍</a></h2>#}
 
         </div>
     </div>

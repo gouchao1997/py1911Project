@@ -3,7 +3,7 @@ from django.contrib.admin import ModelAdmin
 # Register your models here.
 #django自带的后台管理操作需要在此实现
 #注册自己需要管理的模型，book，hero
-from .models import Book, Hero
+from .models import Book, Hero, User, Concact, Account, Tag, Article
 
 
 class HeroInline(admin.StackedInline):
@@ -31,4 +31,10 @@ class BookAdmin(ModelAdmin):
 
 
 admin.site.register(Book,BookAdmin)
+admin.site.register(User)
+admin.site.register(Account)
+admin.site.register(Concact)
+admin.site.register(Tag)
+admin.site.register(Article)
+
 

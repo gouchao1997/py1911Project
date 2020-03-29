@@ -25,7 +25,7 @@ SECRET_KEY = 'l&qj58$+3u&32)#%wff-e4bk*_1*#di-s5^k6(pczz+jtth!22'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+#如果dubug设置为false，ALLOWED_HOSTS代表哪些域名ip可以访问服务
 ALLOWED_HOSTS = []
 
 
@@ -40,12 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #2.想要使用模型类 需要注册应用
     'booktest',
+    'polls',
+    'download',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    #csrf验证需要先关闭，否则会 403 forbidn
+    #这个中间件可以检测是否携带csrf_token
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -82,6 +86,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
     }
 }
 
@@ -125,3 +130,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #需要配置静态文件所处位置
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+#使用自定义的用户类作为django的认证类需要使用配置
+AUTH_USER_MODEL = 'polls.User'
